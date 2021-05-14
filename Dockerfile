@@ -14,6 +14,9 @@ RUN npm run build
 
 FROM nginx
 
+# Generally is just informative for developers
+# But for elasticbeanstalk it is necessary to expose the port
+EXPOSE 80
 COPY --from=builder /home/node/build /usr/share/nginx/html
 
 # By default nginx runs the start command
