@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - './public:/home/node/public'
+      - './src:/home/node/src'
+      - './package.json:/home/node/package.json'
+      - './yarn.lock:/home/node/yarn.lock'
+  tests:
+      build:
+        context: .
+        dockerfile: Dockerfile.dev
+      volumes:
+        - './public:/home/node/public'
+        - './src:/home/node/src'
+        - './package.json:/home/node/package.json'
+        - './yarn.lock:/home/node/yarn.lock'
+      # Overwrites original start command of the image
+      command: ["npm", "run", "test"]
