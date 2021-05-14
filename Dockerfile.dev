@@ -4,6 +4,11 @@ WORKDIR '/home/node'
 USER node
 
 COPY package.json .
+
 RUN npm install
+
+COPY ./public ./public
+COPY ./src ./src
+COPY ./yarn.lock ./yarn.lock
 
 CMD ["npm", "run", "start"]
